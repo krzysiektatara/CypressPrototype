@@ -1,0 +1,127 @@
+# Default values for soneta.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# listaBazDanych: | 
+#     <DatabaseCollection> 
+#         <MsSqlDatabase> 
+#             <Name>kuberneTestest</Name> 
+#             <Active>true</Active> 
+#             <Server>172.31.16.1,1433</Server> 
+#             <DatabaseName>kuberneTestest</DatabaseName> 
+#             <User>sa</User> 
+#             <Password>=CF40E7DE09494A2B99142ABBCDFCBAAE</Password> 
+#         </MsSqlDatabase> 
+#     </DatabaseCollection> 
+listaBazDanych: | 
+    <DatabaseCollection> 
+        <MsSqlDatabase> 
+            <Name>Kube2</Name> 
+            <Active>true</Active> 
+            <Server>172.31.16.1,1433</Server> 
+            <DatabaseName>Kube2</DatabaseName> 
+            <User>sa</User> 
+            <Password>=75587C5381F67662C4ADEEE93972CE1816</Password> 
+        </MsSqlDatabase> 
+    </DatabaseCollection> 
+
+replicaCount: 1
+image:
+  product: "standard"
+  tag: "2406.2.4"
+  webTagPostfix: "-alpine"
+  serverTagPostfix: "-alpine"
+  # domyślnie helm bierze obrazy z DockerHub, Dla obrazów z Harbora trzeba dodać repository: "registry.soneta.pl/"
+  repository: ""
+  scheduler: false
+  webapi: false
+  webwcf: false
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+service:
+  type: ClusterIP
+  server:
+    type: ClusterIP
+    port0Name: tcp0
+    port0: 22000
+    port3Name: tcp3
+    port3: 22003
+
+ingress:
+  enabled: true
+  releaseAutoAnnotation: 
+    key: nginx.ingress.kubernetes.io/session-cookie-name
+    prefix: ""
+    postfix: "-INGRESSCOOKIE"
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: cookie 
+  class: nginx
+  host: internal
+  # tlsSecretName: soneta-ingress-tls
+
+resources:
+  web:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 50m
+      memory: 384Mi
+  webapi:
+    limits:
+      cpu: 50m
+      memory: 128Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+  server:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 384Mi
+  scheduler:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 384Mi
+
+nodeSelector: []
+
+
+tolerations: []
+
+affinity: {}
+
+volumes:
+  all: []
+  frontend: []
+  web: []
+  webapi: []
+  webwcf: []
+  backend: []
+  server: []
+  scheduler: []
+
+envs:
+  frontend: []
+  web: []
+  webapi: []
+  webwcf: []
+  backend: []
+  server: []
+  scheduler: []
+
+args:
+  frontend: []
+  web: []
+  webapi: []
+  webwcf: []
+  backend: []
+  server: []
+  scheduler: []

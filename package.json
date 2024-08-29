@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "enova:start": "helm install enova365 soneta/soneta -f C:\\Users\\krzysztof.tatara\\source\\repos\\helm-charts\\charts\\soneta\\values.yaml",
+    "enova:start": "helm install enova365 soneta/soneta -f .\\values.yaml",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:run": "npx cypress run"
   },
