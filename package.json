@@ -1,0 +1,19 @@
+{
+  "name": "cypressprototyp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "enova:start": "helm install enova365 soneta/soneta -f C:\\Users\\krzysztof.tatara\\source\\repos\\helm-charts\\charts\\soneta\\values.yaml",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run": "npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.13.3",
+    "start-server-and-test": "^2.0.5",
+    "typescript": "^5.5.4"
+  }
+}
